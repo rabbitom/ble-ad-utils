@@ -1,0 +1,7 @@
+html, body, #app {
+    height: calc(100vh - 16px); /* 16px 是上下两个 8px 的 margin */
+}
+
+body {
+    margin: 8px; /* 恢复默认的 margin */
+}
