@@ -24,7 +24,7 @@
       </el-table-column>
       <el-table-column prop="type" label="Description">
         <template #default="scope">
-          {{ scope.row.type === 0x09 ? utf8String(scope.row.bytes) : ''}}
+          {{ adTypeDescription(scope.row.type, scope.row.bytes) }}
         </template>
       </el-table-column>
     </el-table>
@@ -33,8 +33,8 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { hexString, parseHexString, parseRawAdvertisingData, utf8String } from './lib/utils';
-import { adTypeName } from './lib/ad-types';
+import { hexString, parseHexString, parseRawAdvertisingData } from './lib/utils';
+import { adTypeName, adTypeDescription } from './lib/ad-types';
 const bytes = ref('');
 const fields = computed(() => {
   const rawData = parseHexString(bytes.value);

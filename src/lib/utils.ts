@@ -1,8 +1,8 @@
-export function hexString(n: number | Array<number>) : string {
+export function hexString(n: number | Array<number>, glue: string = ' ') : string {
     if(typeof n === 'number')
         return n.toString(16).padStart(2, '0').toUpperCase()
     else
-        return n.map(hexString).join(' ')
+        return n.map(m => hexString(m)).join(glue);
 }
 
 export function parseHexString(str: string) {
@@ -49,5 +49,8 @@ export function parseRawAdvertisingData(rawData: number[]) {
 }
 
 export function utf8String(bytes: number[]) {
-    return new TextDecoder().decode(new Uint8Array(bytes))
+    let length = bytes.length;
+    while(bytes.length >= 1 && bytes[length - 1] === 0)
+        length--;
+    return new TextDecoder().decode(new Uint8Array(bytes.slice(0, length)));
 }

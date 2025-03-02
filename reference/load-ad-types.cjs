@@ -1,7 +1,10 @@
+/**
+ * Load ad types from YAML file and save as JSON
+ */
+
 const yaml = require('js-yaml');
 const fs   = require('fs');
 
-// Get document, or throw exception on error
 try {
   const doc = yaml.load(fs.readFileSync('./ad_types.yaml', 'utf8'));
   console.log(doc);
