@@ -38,6 +38,18 @@ function decode16BitsUUIDs(value: number[]) {
     return uuids.map(uuid => '0x' + uuid.toString(16).padStart(4, '0').toUpperCase()).join(', ');
 }
 
+function decode128BitsUUIDs(value: number[]) {
+    if(value.length !== 16)
+        throw Error('Invalid field length of 128-bit Service Class UUIDs');
+    const reversedBytesString = hexString(value.reverse(), '');
+    const match = reversedBytesString.match(/(.{8})(.{4})(.{4})(.{4})(.{12})/);
+    if(match)
+        return match.slice(1).join('-');
+    else
+        // this should never happen
+        throw Error('Invalid 128-bit UUID');
+}
+
 import { hexString, utf8String } from "./utils";
 
 function decodeAdTypeLocalName(value: number[]) {
@@ -65,6 +77,9 @@ export function adTypeDescription(type: number, value: number[]): string {
         case 0x02: // Incomplete List of 16-bit Service Class UUIDs
         case 0x03: // Complete List of 16-bit Service Class UUIDs
             return decode16BitsUUIDs(value);
+        case 0x06: // Incomplete List of 128-bit Service Class UUIDs
+        case 0x07: // Complete List of 128-bit Service Class UUIDs
+            return decode128BitsUUIDs(value);
         case 0x08: // Shortened Local Name
         case 0x09: // Complete Local Name
             return decodeAdTypeLocalName(value);
