@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "byteLength": 2,
+    "attributes": [
+        {
+            "name": "uuid",
+            "type": "string",
+            "stringEncoding": "hex",
+            "byteLength": 2
+        }
+    ]
+}

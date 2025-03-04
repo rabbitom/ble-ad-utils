@@ -2,6 +2,8 @@
  * The adTypes json are converted from https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/core/ad_types.yaml
  */
 import adTypes from './ad-types.json';
+import { hexString, utf8String } from "./utils";
+import { csl_decode } from './csl';
 
 export function adTypeName(type: number) {
     const adType = adTypes.find(adType => adType.value === type);
@@ -50,8 +52,6 @@ function decode128BitsUUIDs(value: number[]) {
         throw Error('Invalid 128-bit UUID');
 }
 
-import { hexString, utf8String } from "./utils";
-
 function decodeAdTypeLocalName(value: number[]) {
     return utf8String(value);
 }
@@ -70,6 +70,19 @@ function decodeManufacturerSpecificData (value: number[]) {
     return '';
 }
 
+import ServiceDataConfig from './service-data/default.json';
+
+function decodeServiceData(value: number[]) {
+    try {
+        const decodeResult = {};
+        const res = csl_decode(value, 0, ServiceDataConfig, decodeResult);
+        return JSON.stringify(res, null, 2);
+    }
+    catch(e) {
+        return '';
+    }
+}
+
 export function adTypeDescription(type: number, value: number[]): string {
     switch(type) {
         case 0x01: // Flags
@@ -83,6 +96,8 @@ export function adTypeDescription(type: number, value: number[]): string {
         case 0x08: // Shortened Local Name
         case 0x09: // Complete Local Name
             return decodeAdTypeLocalName(value);
+        case 0x16: // Service Data - 16Bit UUID
+            return decodeServiceData(value);
         case 0xFF: // Manufacturer Specific Data
             return decodeManufacturerSpecificData(value);
     }
