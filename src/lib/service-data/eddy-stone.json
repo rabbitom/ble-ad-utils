@@ -1,0 +1,38 @@
+{
+    "name": "EddyStone",
+    "type": "object",
+    "byteLength": 3,
+    "filter": "AAFE",
+    "attributes": [
+        {
+            "name": "filter",
+            "type": "string",
+            "byteLength": 2,
+            "stringEncoding": "hex"
+        },
+        {
+            "name": "frameType",
+            "type": "number",
+            "numberType": "uint8",
+            "enum": "FrameType",
+            "values": [
+                {
+                    "name": "UID",
+                    "value": 0
+                },
+                {
+                    "name": "URL",
+                    "value": 16
+                },
+                {
+                    "name": "TLM",
+                    "value": 32
+                },
+                {
+                    "name": "EID",
+                    "value": 48
+                }
+            ]
+        }
+    ]
+}

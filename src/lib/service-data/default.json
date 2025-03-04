@@ -4,8 +4,8 @@
     "attributes": [
         {
             "name": "uuid",
-            "type": "string",
-            "stringEncoding": "hex",
+            "type": "number",
+            "numberType": "uint16le",
             "byteLength": 2
         }
     ]

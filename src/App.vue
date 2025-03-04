@@ -28,6 +28,7 @@
         </template>
       </el-table-column>
     </el-table>
+    <div class="footer">Fork me on GitHub: <a href="https://github.com/rabbitom/ble-ad-utils">ble-ad-utils</a></div>
   </div>
 </template>
 
@@ -38,7 +39,8 @@ import { adTypeName, adTypeDescription } from './lib/ad-types';
 const bytes = ref('');
 const fields = computed(() => {
   try {
-    const rawData = parseHexString(bytes.value);
+    const input = bytes.value.replace(/^[^0-9a-fA-F]*/, '');
+    const rawData = parseHexString(input);
     return parseRawAdvertisingData(rawData);
   }
   catch(e) {
@@ -55,5 +57,8 @@ const fields = computed(() => {
 }
 .flex-1 {
   flex: 1;
+}
+.footer {
+  text-align: center;
 }
 </style>
