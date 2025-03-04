@@ -37,8 +37,13 @@ import { hexString, parseHexString, parseRawAdvertisingData } from './lib/utils'
 import { adTypeName, adTypeDescription } from './lib/ad-types';
 const bytes = ref('');
 const fields = computed(() => {
-  const rawData = parseHexString(bytes.value);
-  return parseRawAdvertisingData(rawData);
+  try {
+    const rawData = parseHexString(bytes.value);
+    return parseRawAdvertisingData(rawData);
+  }
+  catch(e) {
+    return [];
+  }
 })
 </script>
 
