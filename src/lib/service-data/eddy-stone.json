@@ -1,7 +1,6 @@
 {
     "name": "EddyStone",
     "type": "object",
-    "byteLength": 3,
     "filter": "AAFE",
     "attributes": [
         {
@@ -31,6 +30,119 @@
                 {
                     "name": "EID",
                     "value": 48
+                }
+            ]
+        },
+        {
+            "name": "frameData",
+            "type": "variable",
+            "typeIndex": "frameType",
+            "types": [
+                {
+                    "index": 0,
+                    "type": "object",
+                    "attributes": [
+                        {
+                            "name": "txPower",
+                            "type": "number",
+                            "numberType": "uint8"
+                        },
+                        {
+                            "name": "namespace",
+                            "type": "string",
+                            "byteLength": 10,
+                            "stringEncoding": "hex"
+                        },
+                        {
+                            "name": "instance",
+                            "type": "string",
+                            "byteLength": 6,
+                            "stringEncoding": "hex"
+                        }
+                    ]
+                },
+                {
+                    "index": 16,
+                    "type": "object",
+                    "attributes": [
+                        {
+                            "name": "txPower",
+                            "type": "number",
+                            "numberType": "uint8"
+                        },
+                        {
+                            "name": "urlPrefix",
+                            "type": "number",
+                            "numberType": "uint8",
+                            "enum": "UrlPrefix",
+                            "values": [
+                                {
+                                    "name": "http://www.",
+                                    "value": 0
+                                },
+                                {
+                                    "name": "https://www.",
+                                    "value": 1
+                                },
+                                {
+                                    "name": "http://",
+                                    "value": 2
+                                },
+                                {
+                                    "name": "https://",
+                                    "value": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "index": 32,
+                    "type": "object",
+                    "attributes": [
+                        {
+                            "name": "version",
+                            "type": "number",
+                            "numberType": "uint8"
+                        },
+                        {
+                            "name": "batteryVoltage",
+                            "type": "number",
+                            "numberType": "uint16be"
+                        },
+                        {
+                            "name": "temperature",
+                            "type": "number",
+                            "numberType": "int16be"
+                        },
+                        {
+                            "name": "advertisingCount",
+                            "type": "number",
+                            "numberType": "uint32be"
+                        },
+                        {
+                            "name": "timeSincePowerOn",
+                            "type": "number",
+                            "numberType": "uint32be"
+                        }
+                    ]
+                },
+                {
+                    "index": 48,
+                    "type": "object",
+                    "attributes": [
+                        {
+                            "name": "txPower",
+                            "type": "number",
+                            "numberType": "uint8"
+                        },
+                        {
+                            "name": "eid",
+                            "type": "string",
+                            "byteLength": 8,
+                            "stringEncoding": "hex"
+                        }
+                    ]
                 }
             ]
         }

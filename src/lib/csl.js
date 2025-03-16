@@ -240,7 +240,7 @@ function csl_encode_bitmask(value, attributes) {
 
 function csl_get_variable_type(value, config) {
     const typeIndex = value[config.typeIndex]
-    if(typeIndex) {
+    if(typeIndex !== undefined) {
         const { types } = config
         const type = types.find(t => t.index === typeIndex)
         if(type === undefined)
