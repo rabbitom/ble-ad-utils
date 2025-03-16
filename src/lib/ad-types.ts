@@ -42,7 +42,8 @@ function decode16BitsUUIDs(value: number[]) {
 function decode128BitsUUIDs(value: number[]) {
     if(value.length !== 16)
         throw Error('Invalid field length of 128-bit Service Class UUIDs');
-    const reversedBytesString = hexString(value.reverse(), '');
+    const reversedBytes = [...value].reverse(); //the reverse function will change the original array
+    const reversedBytesString = hexString(reversedBytes, '');
     const match = reversedBytesString.match(/(.{8})(.{4})(.{4})(.{4})(.{12})/);
     if(match)
         return match.slice(1).join('-');
