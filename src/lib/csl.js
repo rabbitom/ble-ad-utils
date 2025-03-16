@@ -1,3 +1,12 @@
+/**
+ * CSL - common serialization library -  convert between bytes array and json with config
+ * Author: Tom Hao
+ * Date: 2025-03-16
+ * Revision: 1
+ * TODO:
+ *  - int8
+ *  - calculate length
+ */
 function checkLength(data, offset, byteLength, decodeResult) {
     if(offset + byteLength > data.length)
         throw new Error('Decoding failed: length too short', {
